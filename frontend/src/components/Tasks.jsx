@@ -32,7 +32,7 @@ const Tasks = () => {
     <>
       <div className="my-2 mx-auto max-w-[700px] py-4">
 
-        {tasks.length !== 0 && <h2 className='my-2 ml-2 md:ml-0 text-xl'>Your tasks ({tasks.length})</h2>}
+        {tasks.length !== 0 && <h2 className='text-white my-2 ml-2 md:ml-0 text-xl'>Your tasks ({tasks.length})</h2>}
         {loading ? (
           <Loader />
         ) : (
@@ -46,10 +46,10 @@ const Tasks = () => {
 
             ) : (
               tasks.map((task, index) => (
-                <div key={task._id} className='bg-white my-4 p-4 text-gray-600 rounded-md shadow-md'>
+                <div key={task._id} className='bg-customPurple my-4 p-4 text-gray-600 rounded-lg shadow-lg border border-white'>
                   <div className='flex'>
 
-                    <span className='font-medium'>Task #{index + 1}</span>
+                    <span className='text-white font-bold'>Task #{index + 1}</span>
 
                     <Tooltip text={"Edit this task"} position={"top"}>
                       <Link to={`/tasks/${task._id}`} className='ml-auto mr-2 text-green-600 cursor-pointer'>
@@ -64,7 +64,7 @@ const Tasks = () => {
                     </Tooltip>
 
                   </div>
-                  <div className='whitespace-pre'>{task.description}</div>
+                  <div className='text-white whitespace-pre'>{task.description}</div>
                 </div>
               ))
 

@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='flex justify-between sticky top-0 p-4 bg-white shadow-sm items-center'>
+      <header className='flex justify-between sticky top-0 p-4 bg-customBlack shadow-sm items-center'>
         <h2 className='cursor-pointer uppercase font-medium'>
           <Link to="/"> Task Manager </Link>
         </h2>
@@ -31,7 +31,7 @@ const Navbar = () => {
               <li className='py-2 px-3 cursor-pointer hover:bg-gray-200 transition rounded-sm' onClick={handleLogoutClick}>Logout</li>
             </>
           ) : (
-            <li className='py-2 px-3 cursor-pointer text-primary hover:bg-gray-100 transition rounded-sm'><Link to="/login">Login</Link></li>
+            <li className='py-2 px-3 cursor-pointer text-black hover:bg-gray-100 transition rounded-sm'><Link to="/login">Login</Link></li>
           )}
         </ul>
         <span className='md:hidden cursor-pointer' onClick={toggleNavbar}><i className="fa-solid fa-bars"></i></span>

@@ -6,7 +6,10 @@ module.exports = {
     extend: {
       colors: {
         "primary": "#24ab8f",
-        "primary-dark": "#268d77",
+        "primary-dark": "#131314",
+        "customBlack": "#b3c0f9",	
+        "customPurple": '#1e1f20',
+        "customGray": "#8b8b8b",
       },
       animation: {
         "loader": "loader 1s linear infinite",
