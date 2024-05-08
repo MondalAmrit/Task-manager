@@ -17,7 +17,8 @@ const Task = () => {
   const mode = taskId === undefined ? "add" : "update";
   const [task, setTask] = useState(null);
   const [formData, setFormData] = useState({
-    description: ""
+    description: "",
+    completionDate: ""
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -32,23 +33,24 @@ const Task = () => {
       const config = { url: `/tasks/${taskId}`, method: "get", headers: { Authorization: authState.token } };
       fetchData(config, { showSuccessToast: false }).then((data) => {
         setTask(data.task);
-        setFormData({ description: data.task.description });
+        setFormData({ description: data.task.description, completionDate: data.task.completionDate });
       });
     }
   }, [mode, authState, taskId, fetchData]);
 
 
-
   const handleChange = e => {
     setFormData({
-      ...formData, [e.target.name]: e.target.value
+      ...formData,
+      [e.target.name]: e.target.value
     });
   }
 
   const handleReset = e => {
     e.preventDefault();
     setFormData({
-      description: task.description
+      description: task.description,
+      completionDate: task.completionDate // Reset completion date to original value
     });
   }
 
@@ -76,7 +78,6 @@ const Task = () => {
     }
   }
 
-
   const fieldError = (field) => (
     <p className={`mt-1 text-pink-600 text-sm ${formErrors[field] ? "block" : "hidden"}`}>
       <i className='mr-2 fa-solid fa-circle-exclamation'></i>
@@ -99,6 +100,12 @@ const Task = () => {
                 {fieldError("description")}
               </div>
 
+              <div className="mb-4">
+                <label htmlFor="completionDate">Completion Date</label>
+                <input className='w-full border-2' type="date" name="completionDate" id="completionDate" value={formData.completionDate ? formData.completionDate.substring(0, 10) : ""} onChange={handleChange} required />
+                {fieldError("completionDate")}
+              </div>
+
               <button className='bg-primary text-white px-4 py-2 font-medium hover:bg-primary-dark' onClick={handleSubmit}>{mode === "add" ? "Add task" : "Update Task"}</button>
               <button className='ml-4 bg-red-500 text-white px-4 py-2 font-medium' onClick={() => navigate("/")}>Cancel</button>
               {mode === "update" && <button className='ml-4 bg-blue-500 text-white px-4 py-2 font-medium hover:bg-blue-600' onClick={handleReset}>Reset</button>}
@@ -109,5 +116,4 @@ const Task = () => {
     </>
   )
 }
-
-export default Task
+export default Task;
